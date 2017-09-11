@@ -12,7 +12,7 @@ ngnx:
   vers: 1.12.1
 jdk:
   vers: 8u144
-  url: "none"
 
+jdk_url: "http://download.oracle.com/otn-pub/java/jdk/{{ jdk.vers }}-b14/jdk-{{ jdk.vers }}-linux-x64.rpm"
 wf_url: "http://download.jboss.org/wildfly/{{ wf.vers }}.Final/wildfly-{{ wf.vers }}.Final.tar.gz"
 ngnx_irl: "https://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-{{ ngnx.vers }}-1.el7.ngx.x86_64.rpm"
