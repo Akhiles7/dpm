@@ -8,10 +8,12 @@
     url: "{{ jdk_url }}"
     headers: 'Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
     dest: "/tmp/dpm_pkg/"
+    timeout: 120
 - name: Download WF and Nginx
   get_url:
     url: "{{ item }}"
     dest: "/tmp/dpm_pkg/"
+    timeout: 120
   with_items:
     - "{{ ngnx_url }}"
     - "{{ wf_url }}"
