@@ -1,0 +1,9 @@
+---
+wfly:
+  srvc:
+    - port: 8080
+      env: 'DEV1'
+    - port: 8090
+      env: 'DEV2'
+    - port: 9090
+      env: 'DEV3'

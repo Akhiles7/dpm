@@ -1,5 +1,5 @@
 ---
-- name: Prepare Pacakges
+- name: Prepare Packages
   hosts: local
   vars_files:
     - "roles/dpm_main/vars/main.yml"
@@ -7,8 +7,13 @@
     - common
 
 - name: Prepare Infrasctructure
-  hosts: dpm_dev
+  hosts: dpm_main
   become: true
   roles:
     - dpm_main
+
+- name: Prepare DB Infrasctructure
+  hosts: dpm_db
+  become: true
+  roles:
     - dpm_db

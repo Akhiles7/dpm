@@ -1,0 +1,7 @@
+---
+wf:
+  srvc:
+    - port: 8080
+      env: 'ST1'
+    - port: 8090
+      env: 'ST2'

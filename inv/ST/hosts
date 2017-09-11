@@ -1,0 +1,8 @@
+[local]
+localhost ansible_connection=local
+
+[dpm_main]
+<<will_be_here_soon>>
+
+[dpm_db]
+<<also_will_be_here...maybe>>
