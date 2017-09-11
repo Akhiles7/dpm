@@ -2,7 +2,7 @@
 - name: Download Java
   get_url:
     url: "{{ jdk_url }}" 
-    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
+    headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
     dest: "/tmp/"
 - name: Download WF and Nginx
   get_url:
