@@ -1,19 +1,7 @@
 ---
-- name: Download Java
-  get_url:
-    url: "{{ jdk_url }}" 
-    headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
-    dest: "/tmp/"
-- name: Download WF and Nginx
-  get_url:
-    url: "{{ item }}"
-    dest: "/tmp/"
-  with_items:
-    - "{{ ngnx_url }}"
-    - "{{ wf_url }}"
-- name: Copy rpms 
+- name: Copy rpms to dest 
   copy: 
-    src: "/tmp/{{ item }}"
+    src: "/tmp/dpm_pkg/{{ item }}"
     dest: "/u01/{{ item }}"
   with_items:
     - "jdk-{{ jdk.vers }}-linux-x64.rpm"
@@ -35,7 +23,7 @@
     state: present
 - name: Install WildFly
   unarchive:
-    src: "/tmp/wildfly-{{ wf.vers }}.Final.tar.gz"
+    src: "/tmp/dpm_pkg/wildfly-{{ wf.vers }}.Final.tar.gz"
     dest: /u01/
 - name: Correct permissions
   file:
@@ -43,14 +31,10 @@
     owner: wildfly
     group: wildfly
     recurse: yes
-- name: Cleanup
+- name: Cleanup temp folder
   file:
-    src: "/tmp/{{ item }}"
+    src: "/tmp/dpm_pkg"
     state: absent
-  with_items:
-    - "jdk-{{ jdk.vers }}-linux-x64.rpm"
-    - "nginx-{{ ngnx.vers }}-1.el7.ngx.x86_64.rpm"
-    - "wildfly-{{ wf.vers }}.Final.tar.gz"
 
 - name: Register Wildfly as a service
   template:

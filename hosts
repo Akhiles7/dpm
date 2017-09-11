@@ -1,2 +1,5 @@
+[local]
+localhost ansible_connection=local
+
 [dpm_dev]
 10.36.6.170

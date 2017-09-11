@@ -1,0 +1,4 @@
+---
+jdk_url: "http://download.oracle.com/otn-pub/java/jdk/{{ jdk.vers }}-b01/090f390dda5b47b9b721c7dfaa008135/jdk-{{ jdk.vers }}-linux-x64.rpm"
+wf_url: "http://download.jboss.org/wildfly/{{ wf.vers }}.Final/wildfly-{{ wf.vers }}.Final.tar.gz"
+ngnx_url: "https://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-{{ ngnx.vers }}-1.el7.ngx.x86_64.rpm"

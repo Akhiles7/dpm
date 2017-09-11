@@ -1,0 +1,17 @@
+---
+- name: Create temp download dir
+  file:
+    name: /tmp/dpm_pkg
+    state: directory
+- name: Download Java
+  get_url:
+    url: "{{ jdk_url }}"
+    headers: 'Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
+    dest: "/tmp/dpm_pkg/"
+- name: Download WF and Nginx
+  get_url:
+    url: "{{ item }}"
+    dest: "/tmp/dpm_pkg/"
+  with_items:
+    - "{{ ngnx_url }}"
+    - "{{ wf_url }}"
