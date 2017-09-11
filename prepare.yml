@@ -1,6 +1,6 @@
 ---
 - name: Prepare Infrastructure
-  hosts: dpm
+  hosts: dpm_dev
   become: true
 
   roles:
