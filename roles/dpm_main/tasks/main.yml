@@ -31,10 +31,6 @@
     owner: wildfly
     group: wildfly
     recurse: yes
-- name: Cleanup temp folder
-  file:
-    src: "/tmp/dpm_pkg"
-    state: absent
 
 - name: Register Wildfly as a service
   template:
