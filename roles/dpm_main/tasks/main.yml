@@ -1,0 +1,57 @@
+---
+- name: Copy rpms #Redo to download locally
+  copy: 
+    src: "/opt/soft/nix/{{ item }}"
+    dest: "/u01/{{ item }}"
+  with_items:
+    - "jdk-{{ jdk.vers }}-linux-x64.rpm"
+    - "nginx-{{ ngnx.vers }}-1.el7.ngx.x86_64.rpm"
+- name: Install Java and Nginx
+  yum:
+    name: "/u01/{{ item }}"
+    state: present
+  with_items:
+    - "jdk-{{ jdk.vers }}-linux-x64.rpm"
+    - "nginx-{{ ngnx.vers }}-1.el7.ngx.x86_64.rpm"
+- name: Add WildFly group
+  group:
+    name: wildfly
+    state: present
+- name: Create Wildfly user
+  user:
+    name: wildfly
+    state: present
+- name: Install WildFly
+  unarchive: #change src
+    src: "/opt/soft/nix/wildfly-{{ wf.vers }}.Final.tar.gz"
+    dest: /u01/
+- name: Correct permissions
+  file:
+    path: "/u01/wildfly-{{ wf.vers }}.Final"
+    owner: wildfly
+    group: wildfly
+    recurse: yes
+- name: Register Wildfly as a service
+  template:
+    src: wildfly.j2
+    dest: "/etc/systemd/system/wildfly{{ item.env }}.service"
+  with_items: "{{ wf.srvc }}"
+- name: Start and enable Wildfly services
+  service:
+    name: "wildfly{{ item.env }}"
+    enabled: yes
+    state: started
+  with_items: "{{ wf.srvc }}"
+#- name: Configure Nginx
+#  template:
+#    src: nginx.j2
+#    dest: /etc/nginx/conf
+- name: start Nginx
+  service:
+    name: nginx
+    enabled: yes
+    state: started
+
+
+
+  

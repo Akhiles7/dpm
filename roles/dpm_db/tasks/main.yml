@@ -1,0 +1,5 @@
+---
+- name: Install PotgreSQL
+  yum:
+    name: "postgresql-{{ psql.vers }}"
+    state: present

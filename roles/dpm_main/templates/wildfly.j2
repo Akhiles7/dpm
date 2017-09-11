@@ -1,0 +1,13 @@
+[Unit]
+Description=WildFly application server
+Wants=network-online.target 
+After=network-online.target
+
+[Service]
+Type=simple
+User=wildfly
+Group=wildfly
+ExecStart=/u01/wildfly-{{ wf.vers }}.Final/bin/standalone.sh -Djboss.http.port={{ item.port }}
+
+[Install]
+WantedBy=multi-user.target

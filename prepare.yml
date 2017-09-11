@@ -1,0 +1,8 @@
+---
+- name: Prepare Infrastructure
+  hosts: dpm
+  become: true
+
+  roles:
+    - dpm_main
+    - dpm_db
